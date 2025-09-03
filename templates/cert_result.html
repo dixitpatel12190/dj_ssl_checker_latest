@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Certificate & Key Comparison Result</title>
+    <style>
+        body {
+            background: #f4f8fb;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            background: #fff;
+            max-width: 500px;
+            margin: 60px auto;
+            padding: 36px 32px 32px 32px;
+            border-radius: 12px;
+            box-shadow: 0 6px 24px rgba(10, 213, 81, 0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #0078d4;
+            font-size: 2em;
+            margin-bottom: 24px;
+        }
+        .result {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 32px;
+            display: block;
+        }
+        .match {
+            color: #098831;
+        }
+        .nomatch {
+            color: #d40a0a;
+        }
+        a {
+            display: inline-block;
+            background: #0078d4;
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 32px;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+        a:hover {
+            background: #08a300;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% if "match" in analysed_text1|lower %}
+            <h1>Certificate Comparison Result</h1>
+            <span class="result match">{{ analysed_text1 }}</span>
+        <p>
+            <strong style="color: #007bff;">Common Name:</strong> <span style="color: #333;">{{ common_name }}</span><br>
+            <strong style="color: #28a745;">Issuer:</strong> <span style="color: #333;">{{ issuer }}</span><br>
+            <strong style="color: #dc3545;">Expiry Date:</strong> <span style="color: #333;">{{ expiry_date }}</span><br>
+            <strong style="color: #ffc107;">Serial Number:</strong> <span style="color: #333;">{{ serial_number }}</span><br>
+            <strong style="color: #17a2b8;">SAN:</strong> <span style="color: #333;">{{ san|join:", " }}</span>
+        </p>
+
+        {% else %}
+            <h1>Certificate Comparison Result</h1>
+            <span class="result nomatch">{{ analysed_text1 }}</span>
+        {% endif %}
+        <a href="/verify_cert">Go Back </a>
+</body>
+</html>

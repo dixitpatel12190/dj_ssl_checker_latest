@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Decrypt Private Key</title>
+  <style>
+    
+    html,body{height:100%;margin:0;font-family:Segoe UI,Roboto,Arial,sans-serif;
+      background: linear-gradient(180deg,#f0f4f8 0%, #eef5fb 100%); color:#0f1724;
+      -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+    }
+
+    .container{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
+      padding:24px;
+      box-sizing:border-box;
+    }
+
+    .card{
+      width:100%;
+      max-width:560px;
+      background:#fff;
+      border-radius:12px;
+      padding:28px 32px;
+      box-shadow:0 12px 30px rgba(16,40,70,0.08);
+      text-align:left;
+    }
+
+    .title{
+      text-align:center;
+      color:#0078d4;
+      font-weight:700;
+      font-size:22px;
+      margin-bottom:12px;
+    }
+
+    h1{margin:6px 0 6px;font-size:18px;color:#12263a}
+    p.lead{margin:0 0 18px;color:#556b7a;font-size:14px}
+
+    label{display:block;font-weight:600;color:#1f558b;margin-bottom:8px}
+    input[type="file"]{
+      width:100%;
+      padding:10px 12px;
+      border-radius:8px;
+      border:1px solid #e3e8ee;
+      background:#fbfdff;
+      box-sizing:border-box;
+      height:44px;
+    }
+    input[type="password"]{
+      width:100%;
+      padding:10px 12px;
+      border-radius:8px;
+      border:1px solid #e3e8ee;
+      background:#fbfdff;
+      box-sizing:border-box;
+      height:44px;
+    }
+
+    .actions{display:flex;gap:12px;margin-top:14px;align-items:center}
+    .btn{flex:1;background:#0078d4;color:#fff;border:0;padding:12px;border-radius:8px;font-weight:700;cursor:pointer}
+    .btn.secondary{flex:0 0 auto;background:transparent;color:#556b7a;border:1px solid #e3e8ee;padding:10px 14px}
+    .note{margin-top:12px;color:#6b7b84;font-size:13px}
+
+    .error{background:#fff0f0;color:#7a1f1f;padding:10px;border-radius:8px;border:1px solid #f5c6cb;margin-bottom:12px}
+    @media (max-width:520px){.card{padding:20px}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="title">Decrypt the Private Key Files</div>
+
+      <p class="lead">Upload an encrypted PEM or Key private key and provide the passphrase (if any).</p>
+
+      {% if error %}
+        <div class="error">{{ error }}</div>
+      {% endif %}
+
+      <form method="post" enctype="multipart/form-data" action="{% url 'decrypt_key' %}">
+        {% csrf_token %}
+
+        <div class="field">
+          <label for="key_file">Private Key File (PEM)</label>
+          <input id="key_file" type="file" name="key_file" accept=".pem,.key" required>
+        </div>
+
+        <div class="field">
+          <label for="key_password">Passphrase (if any)</label>
+          <input id="key_password" type="password" name="key_password" placeholder="Optional passphrase">
+        </div>
+
+        <div class="actions">
+          <button class="btn" type="submit">Decrypt &amp; Download</button>
+          <a class="btn secondary" href="{% url 'home' %}">Cancel</a>
+        </div>
+
+        <div class="note">Supported formats: PEM,KEY. Encrypted keys require the correct passphrase to decrypt.</div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
