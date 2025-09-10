@@ -13,7 +13,7 @@ sudo apt install -y \
 
 sudo mkdir -p /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
-    sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+    gpg --dearmor | sudo tee /etc/apt/keyrings/docker.gpg > /dev/null
 
 sudo apt update
 sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
