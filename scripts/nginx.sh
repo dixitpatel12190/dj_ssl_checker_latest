@@ -1,3 +1,8 @@
+#!/bin/bash
+
+set -e
+
+cat > /etc/nginx/sites-available/geetagyan.org << 'EOF'
 server {
     listen 80;
     server_name _;
@@ -13,3 +18,6 @@ server {
         proxy_set_header X-Forwarded-Proto $scheme;
     }
 }
+EOF
+
+sudo ln -sf /etc/nginx/sites-available/geetagyan.org /etc/nginx/sites-enabled/geetagyan.org
