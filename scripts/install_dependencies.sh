@@ -26,7 +26,7 @@ sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin d
 
 if [ "$USER" != "root" ]; then
     sudo usermod -aG docker "$USER"
-    echo "Added $USER to docker group".
+    echo "Added $USER to docker group."
 fi
 
 
