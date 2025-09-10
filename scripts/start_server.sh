@@ -10,7 +10,7 @@ sudo systemctl enable gunicorn
 sudo rm default
 sudo touch default
 
-sudo tee /etc/nginx/sites-available/default > /dev/null <<EOF
+sudo tee /etc/nginx/sites-available/default > /dev/null <<'EOF'
 server {
     listen 80;
     server_name geetagyan.org;
@@ -21,9 +21,9 @@ server {
         proxy_set_header Connection "";
 
         proxy_set_header Host geetagyan.org;
-        proxy_set_header X-Real-IP \$remote_addr;
-        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto \$scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
     }
 }
 EOF
