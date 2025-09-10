@@ -27,5 +27,5 @@ server {
     }
 }
 EOF
-
+echo "Nginx configuration updated."
 sudo systemctl restart nginx
