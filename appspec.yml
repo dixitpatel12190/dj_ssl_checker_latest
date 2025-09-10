@@ -1,6 +1,8 @@
 version: 0.0
 os: linux
-
+files:
+  - source: scripts/geetagyan.org.conf
+    destination: /etc/nginx/sites-available/
 hooks:
   BeforeInstall:
     - location: scripts/install_dependencies.sh
