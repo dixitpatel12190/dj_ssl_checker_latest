@@ -28,7 +28,6 @@ DEBUG = False
 ALLOWED_HOSTS = ['geetagyan.org','*']
 
 CSRF_TRUSTED_ORIGINS = [
-    "http://geetagyan.org",
     "https://geetagyan.org",
 ]
 
