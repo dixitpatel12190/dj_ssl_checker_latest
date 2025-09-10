@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-=prfemfx(h#@03mq@0b+9+j^28rmoot&71+um1tfqwfk0+83lm
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['geetagyan.org']
 
 CSRF_TRUSTED_ORIGINS = [
     "http://geetagyan.org",
