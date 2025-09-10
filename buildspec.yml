@@ -1,8 +1,13 @@
 version: 0.2
 phases:
+  install:
+    runtime-versions:
+      python: 3.8
+
   pre_build:
     commands:
       - echo Installing dependencies...
+      - pip install -r requirements.txt
       - echo Mukund@1210 | docker login -u dixitpatel12190 --password-stdin
       - IMAGE_NAME=dixitpatel12190/dj_ssl_checker_latest
       - TAG=latest
@@ -14,7 +19,7 @@ phases:
     commands:
       - echo Pushing Docker image...
       - docker push $IMAGE_NAME:$TAG
-      
+
 artifacts:
   files:
     - '**/*'
