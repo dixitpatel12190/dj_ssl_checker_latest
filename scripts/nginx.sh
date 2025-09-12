@@ -2,6 +2,8 @@
 
 set -e
 
+sudo rm -f /etc/nginx/sites-enabled/default
+
 cat > /etc/nginx/sites-available/geetagyan.org << 'EOF'
 server {
     listen 80;
@@ -19,5 +21,9 @@ server {
     }
 }
 EOF
+
+sudo systemctl stop nginx
+sudo certbot --nginx -d geetagyan.org --non-interactive --agree-tos -m dr.dixit1999@gmail.com
+sudo systemctl start nginx
 
 sudo ln -sf /etc/nginx/sites-available/geetagyan.org /etc/nginx/sites-enabled/geetagyan.org

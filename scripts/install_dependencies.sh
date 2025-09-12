@@ -26,6 +26,10 @@ sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin d
 
 sudo usermod -aG docker ubuntu
 
+sudo systemctl stop nginx
 
+sudo apt install -y certbot python3-certbot-nginx
+sudo certbot --nginx -d geetagyan.org --non-interactive --agree-tos -m dr.dixit1999@gmail.com
+sudo systemctl start nginx
 
 
